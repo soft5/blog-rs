@@ -76,7 +76,7 @@ pub struct PostsListComponentProps {
 #[function_component(PostsListComponent)]
 pub fn posts_list(PostsListComponentProps { request_uri }: &PostsListComponentProps) -> Html {
     let loc = use_location().unwrap();
-    let nav = use_navigator().unwrap();
+    let nav = use_history().unwrap();
     let pagination_state = match loc.query::<PaginationQuery>() {
         Ok(q) => q.into(),
         Err(e) => PaginationState::default(),
@@ -149,8 +149,8 @@ pub fn posts_list(PostsListComponentProps { request_uri }: &PostsListComponentPr
         let nav = nav.clone();
         Callback::from(move |_| {
             nav.push_with_query(
-                &Route::ListPosts,
-                &PaginationQuery {
+                Route::ListPosts,
+                PaginationQuery {
                     t: "p".to_string(),
                     pn: (pagination_state.page_num - 1).to_string(),
                     tid: top_id.to_string(),
@@ -166,8 +166,8 @@ pub fn posts_list(PostsListComponentProps { request_uri }: &PostsListComponentPr
         let pagination_state = pagination_state.clone();
         Callback::from(move |_| {
             nav.push_with_query(
-                &Route::ListPosts,
-                &PaginationQuery {
+                Route::ListPosts,
+                PaginationQuery {
                     t: "n".to_string(),
                     pn: (pagination_state.page_num + 1).to_string(),
                     tid: top_id.to_string(),

@@ -21,8 +21,8 @@ impl Component for Unauthorized {
 
     fn view(&self, ctx: &Context<Self>) -> Html {
         let loc = ctx.link().location().unwrap();
-        let redirect_url = loc.path();
-        let redirect_url = urlencoding::encode(loc.path());
+        let redirect_url = loc.pathname();
+        let redirect_url = urlencoding::encode(redirect_url.as_str());
         // let redirect_url = redirect_url.into_owned();
         let mut url = String::from("/management?.redirect_url=");
         url.push_str(redirect_url.as_ref());

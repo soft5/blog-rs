@@ -21,12 +21,12 @@ impl Component for App {
     fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
         match msg {
             Msg::Compose => {
-                let navigator = ctx.link().navigator().unwrap();
+                let navigator = ctx.link().history().unwrap();
                 wasm_bindgen_futures::spawn_local(async move {
                     let response = reqwasm::http::Request::get("/post/new").send().await.unwrap();
                     let json: blog_common::dto::Response<u64> = response.json().await.unwrap();
                     if json.status == 0 {
-                        navigator.push(&Route::ComposePost { id: json.data.unwrap() });
+                        //navigator.push(&Route::ComposePost { id: json.data.unwrap() });
                         // yew_router::push_route(crate::router::Route::ComposePost { id: json.data.unwrap() });
                     } else {
                         // ctx.link().location().unwrap().route().set_href("/management");
@@ -103,7 +103,7 @@ impl Component for App {
                   </div>
                 </nav>
                 <main>
-                    <Switch<Route> render={switch} />
+                <Switch<Route> render={Switch::render(switch)} />
                 </main>
                 <footer class="footer">
                     <div class="content has-text-centered">

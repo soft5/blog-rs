@@ -159,7 +159,7 @@ impl Component for PostDetail {
         let show_notification_callback = Callback::from(|_: MouseEvent| show_notification_box());
         let hide_notification_callback = Callback::from(|e: MouseEvent| hide_notification_box(e));
 
-        let nav = ctx.link().navigator().unwrap();
+        let nav = ctx.link().history().unwrap();
         let go_back = ctx.link().callback(move |e: MouseEvent| nav.back());
 
         let messages = i18n::get(

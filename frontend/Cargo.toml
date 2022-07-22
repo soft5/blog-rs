@@ -42,11 +42,12 @@ wasm-bindgen-futures = "0.4"
 weblog = "0.3.0"
 web-sys = { version = "0.3", features = ["Window", "Document", "HtmlDocument"] }
 wee_alloc = { version = "0.4" }
-#yew = "0.18"
-#yew-router = "0.15"
-yew = {git = "https://github.com/yewstack/yew", branch = "master", features = ["csr"]}
-yew-router = { git = "https://github.com/yewstack/yew", branch="master" }
-yew-agent = { git = "https://github.com/yewstack/yew", branch="master" }
+yew = "0.19.3"
+yew-router = "0.16.0"
+yew-agent = "0.1.0"
+# yew = {git = "https://github.com/yewstack/yew", branch = "master", features = ["csr"]}
+# yew-router = { git = "https://github.com/yewstack/yew", branch="master" }
+# yew-agent = { git = "https://github.com/yewstack/yew", branch="master" }
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3"
