@@ -1,6 +1,6 @@
 #![recursion_limit = "256"]
 
-use std::net::SocketAddr;
+use std::{net::SocketAddr, env};
 
 use blog_backend::{db, service, util::result,config::{config_loader, self}};
 use clap::Parser;
@@ -13,8 +13,8 @@ use tokio::{
 
 
 fn main() -> result::Result<()> {
-    if std::env::var_os("RUST_LOG").is_none() {
-        std::env::set_var("RUST_LOG", "access-log=info");
+    if env::var_os("RUST_LOG").is_none() {
+        env::set_var("RUST_LOG", "access-log=info");
     }
     pretty_env_logger::init();
     

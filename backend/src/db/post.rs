@@ -130,6 +130,43 @@ pub async fn list(pagination_type: &str, post_id: u64, page_size: u8) -> Result<
     */
 }
 
+pub async fn seach_by_key(
+    key_word: String,
+    pagination_type: &str,
+    post_id: u64,
+    page_size: u8,
+) -> Result<PaginationData<Vec<PostDetail>>> {
+    // SELECT id,title,title_image,'' AS markdown_content,'' AS rendered_content,created_at,updated_at FROM posts WHERE title LIKE 'XXXX%'
+    let key_word = urlencoding::decode(&key_word)?;
+    let s = key_word.as_ref();
+    let mut sql = String::with_capacity(256);
+    // CONCAT('%',?, '%') fail
+    let mut key = String::from("%");
+    key.push_str(s);
+    key.push_str("%");
+    sql.push_str("SELECT id,title,title_image,'' AS markdown_content,rendered_content,created_at,updated_at FROM posts WHERE title LIKE ?");
+
+    let order_by_asc = append_pagination_sql(&mut sql, pagination_type, post_id);
+    println!("key={}", key);
+    println!("sql={}", sql);
+    let mut d = sqlx::query_as::<Sqlite, Post>(
+        // "SELECT id,title,title_image,'' AS markdown_content,rendered_content,created_at,updated_at FROM posts WHERE id IN (SELECT post_id FROM tags_usage WHERE tag_id = ? ORDER BY id DESC LIMIT ?, ?)",
+        &sql,
+    )
+    .bind(key)
+    .bind(page_size)
+    .fetch_all(super::get_sqlite())
+    .await?;
+    if order_by_asc {
+        d.reverse();
+    }
+    let total = d.len();
+    Ok(PaginationData {
+        total: total as u64,
+        data: to_detail_list(d).await?,
+    })
+}
+
 pub async fn list_by_tag(
     tag_name: String,
     pagination_type: &str,

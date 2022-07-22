@@ -266,6 +266,14 @@ pub fn blog_filter(
         .and(warp::path::param::<u64>())
         .and(warp::path::end())
         .and_then(post::list);
+    let post_seach_by_key = warp::get()
+        .and(warp::path("post"))
+        .and(warp::path("word"))
+        .and(warp::path::param::<String>())
+        .and(warp::path::param::<String>())
+        .and(warp::path::param::<u64>())
+        .and(warp::path::end())
+        .and_then(post::seach_by_key);
     let post_list_by_tag = warp::get()
         .and(warp::path("post"))
         .and(warp::path("tag"))

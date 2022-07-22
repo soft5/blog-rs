@@ -42,6 +42,13 @@ pub async fn list(pagination_type: String, post_id: u64) -> Result<impl Reply, R
     }
 }
 
+pub async fn seach_by_key(key_word: String, pagination_type: String, post_id: u64) -> Result<impl Reply, Rejection> {
+    match post::seach_by_key(key_word, &pagination_type, post_id, val::POSTS_PAGE_SIZE).await {
+        Ok(list) => Ok(wrap_json_data(&list)),
+        Err(e) => Ok(wrap_json_err(500, e.0)),
+    }
+}
+
 pub async fn list_by_tag(tag: String, pagination_type: String, post_id: u64) -> Result<impl Reply, Rejection> {
     match post::list_by_tag(tag, &pagination_type, post_id, val::POSTS_PAGE_SIZE).await {
         Ok(list) => Ok(wrap_json_data(&list)),
