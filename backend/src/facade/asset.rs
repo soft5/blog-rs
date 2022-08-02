@@ -1,13 +1,9 @@
 use core::result::Result;
 
 use hyper::{body::Body, header};
-use warp::{filters::path::Tail, http::Response, Rejection, Reply};
+use warp::{filters::path::Tail, http::Response, Rejection};
 
 use crate::service::asset;
-
-pub async fn index() -> Result<impl Reply, Rejection> {
-    Ok(response_asset("index.html"))
-}
 
 pub async fn get_asset(tail: Tail) -> Result<Response<Body>, Rejection> {
     Ok(response_asset(tail.as_str()))

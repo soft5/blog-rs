@@ -91,7 +91,7 @@ fn app(ShowDetailProps { post_id }: &ShowDetailProps) -> Html {
     html! {
         <>
             <section class="hero is-large is-light has-background">
-                <img src={ title_image } class="hero-background is-transparent"/>
+                <img src={ title_image } class="hero-background is-transparent" alt=""/>
                 <div class="hero-body">
                     <div class="container">
                         <p class="title is-1">

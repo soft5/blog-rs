@@ -1,15 +1,14 @@
-use core::{convert::Infallible, result::Result};
+use core::result::Result;
 
-use hyper::header::{self, HeaderMap, HeaderValue};
+use hyper::header::{self};
 use warp::{
-    reply::{Json, Response as WarpResponse},
+    reply::{Response as WarpResponse},
     Rejection, Reply,
 };
 
 use blog_common::{
-    dto::user::{UserInfo, UserInfoWrapper, UserParams},
-    result::{Error, ErrorResponse},
-    val,
+    dto::user::{UserInfoWrapper, UserParams},
+    result::{Error},
 };
 
 use crate::{

@@ -1,7 +1,7 @@
-use std::{rc::Rc, vec::Vec};
+use std::{vec::Vec};
 
 use rand::{
-    distributions::uniform::{SampleRange, SampleUniform},
+    distributions::uniform::{SampleUniform},
     thread_rng, Rng,
 };
 

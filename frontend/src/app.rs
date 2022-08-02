@@ -50,7 +50,7 @@ impl Component for App {
                 <nav class="navbar" role="navigation" aria-label="main navigation">
                   <div class="navbar-brand">
                     <a class="navbar-item" href="/">
-                      <img src="/asset/logo.png" width="115" height="32"/>
+                      <img src="/asset/logo.png" width="115" height="32" alt=""/>
                     </a>
 
                     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="moreNavs">

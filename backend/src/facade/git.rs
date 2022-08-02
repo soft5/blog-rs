@@ -3,20 +3,14 @@ use std::collections::HashMap;
 use blog_common::{
     dto::{
         git::{GitPushInfo, GitRepositoryInfo},
-        user::UserInfo,
-        Response as ApiResponse,
     },
-    result::{Error, ErrorResponse},
-    val,
+    result::{Error},
 };
 use hyper::body::Body;
-use hyper::header::{self, HeaderMap, HeaderValue};
 use warp::{filters::path::Tail, http::Response, Rejection, Reply};
 
 use crate::{
-    db::management,
-    db::post,
-    facade::{session_id_cookie, wrap_json_data, wrap_json_err},
+    facade::{wrap_json_data, wrap_json_err},
     service::{export, git::git, status},
     util::common,
 };

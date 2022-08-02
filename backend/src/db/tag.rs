@@ -1,27 +1,14 @@
 use std::{
     collections::HashMap,
-    hash::Hasher,
-    io::{Cursor, ErrorKind, SeekFrom},
-    mem::size_of,
-    path::{Path, PathBuf},
-    sync::Arc,
     vec::Vec,
 };
 
-use ahash::AHasher;
-use blog_common::{dto::tag::TagUsageAmount, result::Error, util::time};
-use bytes::{Buf, Bytes, BytesMut};
-use lazy_static::lazy_static;
-use parking_lot::RwLock;
+use blog_common::{dto::tag::TagUsageAmount, util::time};
 use sqlx::{Row, Sqlite};
-use tokio::{
-    fs::{remove_file, rename, File, OpenOptions},
-    io::{self, AsyncReadExt, AsyncSeekExt, AsyncWriteExt, BufReader, BufWriter},
-};
 
 use crate::{
-    db::{self, model::Tag, DATA_SOURCE},
-    util::{common, crypt, result::Result, snowflake},
+    db::{model::Tag, DATA_SOURCE},
+    util::result::Result,
 };
 
 pub async fn top() -> Result<Vec<TagUsageAmount>> {

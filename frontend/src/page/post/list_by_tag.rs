@@ -1,15 +1,6 @@
-use std::rc::Rc;
-use std::vec::Vec;
-
-use blog_common::dto::post::PostDetail;
-use blog_common::dto::{PaginationData, Response};
-use blog_common::val;
-use weblog::*;
 use yew::prelude::*;
-use yew_router::prelude::*;
 
 use crate::component::PostsListComponent;
-use crate::router::Route;
 
 #[derive(Clone, Debug, Eq, PartialEq, Properties)]
 pub struct Props {

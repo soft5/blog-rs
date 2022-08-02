@@ -1,8 +1,7 @@
 use rand::Rng;
 use std::vec::Vec;
 
-use blog_common::dto::post::PostDetail;
-use blog_common::dto::{PaginationData, Response};
+use blog_common::dto::{Response};
 use blog_common::val;
 use weblog::*;
 use yew::prelude::*;

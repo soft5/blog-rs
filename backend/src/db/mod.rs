@@ -1,6 +1,5 @@
 use core::time::Duration;
 use std::{
-    io::ErrorKind,
     marker::{Send, Unpin},
     path::Path,
 };
@@ -11,13 +10,11 @@ use once_cell::sync::OnceCell;
 use serde::Serialize;
 use sqlx::{
     pool::PoolOptions,
-    sqlite::{SqliteArguments, SqliteRow},
-    Sqlite, SqlitePool,
+    sqlite::SqliteRow,
+    Sqlite,
 };
-use tokio::fs::{create_dir, remove_file, rename, File, OpenOptions};
-
+use tokio::fs::OpenOptions;
 use crate::util::result::Result;
-use model::Tag;
 
 pub(crate) mod management;
 pub mod model;

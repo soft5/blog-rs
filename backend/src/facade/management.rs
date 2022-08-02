@@ -6,7 +6,6 @@ use blog_common::{
         management::{AdminUser, Setting},
         user::UserInfo,
     },
-    result::Error,
 };
 use hyper::{body::Body, header};
 use warp::{http::Uri, reply::Response, Rejection, Reply};

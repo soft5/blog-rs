@@ -1,7 +1,3 @@
-use std::rc::Rc;
-
-use blog_common::dto::post::PostDetail as PostDetailDto;
-use blog_common::dto::Response;
 use yew::prelude::*;
 use yew_router::prelude::*;
 

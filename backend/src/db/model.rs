@@ -1,13 +1,6 @@
-use core::fmt::Display;
-
 use serde::{Deserialize, Serialize};
 
 use blog_common::dto::{post::PostDetail, user::UserInfo};
-use sqlx::{
-    database::{HasArguments, HasValueRef},
-    encode::IsNull,
-    error::BoxDynError,
-};
 
 #[derive(Serialize, Deserialize, Debug, Clone, sqlx::FromRow)]
 pub struct User {

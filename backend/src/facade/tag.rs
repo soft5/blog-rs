@@ -1,10 +1,10 @@
-use core::{convert::Infallible, result::Result};
+use core::{result::Result};
 
 use warp::{Rejection, Reply};
 
 use crate::{
     db::tag,
-    facade::{session_id_cookie, wrap_json_data, wrap_json_err},
+    facade::{wrap_json_data, wrap_json_err},
 };
 
 pub async fn top() -> Result<impl Reply, Rejection> {

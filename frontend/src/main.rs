@@ -1,5 +1,5 @@
 use blog_frontend::app::App;
-use yew::{html, prelude::*, Html};
+use yew::{html, prelude::*};
 use yew_router::prelude::*;
 
 #[function_component(Main)]

@@ -1,12 +1,11 @@
 use blog_common::util::time;
-use blog_common::{dto::user::UserInfo, result::Error};
+use blog_common::dto::user::UserInfo;
 use sqlx::{Row, Sqlite};
 
 use crate::{
     db::{
         self,
-        model::{Setting, User},
-        DATA_SOURCE,
+        model::{Setting},
     },
     service::status,
     util::{crypt, result::Result},

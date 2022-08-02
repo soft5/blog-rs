@@ -150,7 +150,7 @@ fn update_post(
             </div>
             <p>{" "}</p>
             <section class="hero is-large is-light has-background">
-                <img id="title-image" src={post_detail.title_image.clone()} class="hero-background is-transparent"/>
+                <img id="title-image" src={post_detail.title_image.clone()} class="hero-background is-transparent" alt=""/>
                 <div class="hero-body"></div>
             </section>
             <p>{" "}</p>

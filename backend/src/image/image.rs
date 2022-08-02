@@ -1,24 +1,17 @@
-use std::{io::Write, path::Path, vec::Vec};
-
 use bytes::{buf::BufMut, Bytes, BytesMut};
 use image::{
     self,
     codecs::{
-        jpeg::JpegEncoder,
         png::{CompressionType, FilterType, PngEncoder},
     },
-    ColorType, DynamicImage, GenericImage, GenericImageView, ImageBuffer, ImageEncoder, ImageFormat, Luma, Rgb, Rgba,
+    ColorType, ImageEncoder, ImageFormat, Rgba,
     RgbaImage,
 };
 use rand::{thread_rng, Rng};
-use tokio::fs::copy;
 
 use blog_common::{dto::UploadFileInfo, result::Error};
 
-use crate::util::{result::Result, val};
-
-pub type ImageWidth = u32;
-pub type ImageHeight = u32;
+use crate::util::{result::Result};
 
 const MAX_DIMENSION: u32 = 1000;
 
