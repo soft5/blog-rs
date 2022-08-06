@@ -26,6 +26,7 @@ impl Component for App {
                     let response = reqwasm::http::Request::get("/post/new").send().await.unwrap();
                     let json: blog_common::dto::Response<u64> = response.json().await.unwrap();
                     if json.status == 0 {
+                        navigator.push(Route::ComposePost { id: json.data.unwrap() });
                         //navigator.push(&Route::ComposePost { id: json.data.unwrap() });
                         // yew_router::push_route(crate::router::Route::ComposePost { id: json.data.unwrap() });
                     } else {

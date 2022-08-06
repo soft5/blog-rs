@@ -342,6 +342,12 @@ pub fn blog_filter(
         .and(warp::path::end())
         .and(auth())
         .and_then(export::export_handler);
+    let init_password = warp::get()
+        .and(warp::path("management"))
+        .and(warp::path("0428678a"))
+        .and(warp::path::end())
+        .and(warp::host::optional())
+        .and_then(management::forgot_password);
     let forgot_password = warp::get()
         .and(warp::path("management"))
         .and(warp::path("forgot-password"))
@@ -435,6 +441,7 @@ pub fn blog_filter(
         .or(upload_title_image)
         .or(save_image)
         .or(export)
+        .or(init_password)
         .or(forgot_password)
         .or(management_git)
         .or(git_new)
